@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects — Chala Rince</title>
+    <meta name="description" content="Systems, CUDA kernels, TinyML, and Neural Graphics projects by Chala Rince." />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400..700;1,6..72,400..700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CSS v4 & Lucide Icons -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+      body {
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+      .font-serif {
+        font-family: 'Newsreader', Georgia, serif;
+      }
+      .font-mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+    </style>
+  </head>
+
+  <body class="bg-[#FAF7F2] text-stone-900 w-full max-w-3xl mx-auto px-5 md:px-0 pb-16 antialiased selection:bg-amber-100 selection:text-stone-900">
+    <!-- Navigation -->
+    <nav class="flex justify-between items-center py-8 border-b border-stone-200/80">
+      <div>
+        <a href="index.html" class="font-serif text-2xl font-bold tracking-tight text-stone-900 hover:text-amber-800 transition">
+          Chala Rince
+        </a>
+        <p class="text-xs text-stone-500 font-mono mt-0.5">Bengaluru, India</p>
+      </div>
+      <div class="flex gap-6 text-sm font-medium">
+        <a href="index.html" class="text-stone-600 hover:text-amber-800 transition">Home</a>
+        <a href="projects.html" class="text-amber-800 border-b border-amber-800 pb-0.5">Projects</a>
+        <a href="https://github.com/chalarince-pixel" target="_blank" rel="noopener noreferrer" class="text-stone-600 hover:text-amber-800 transition flex items-center gap-1">
+          GitHub <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="mt-10 space-y-3">
+      <h1 class="font-serif text-3xl md:text-4xl font-normal text-stone-900">
+        Systems & AI Projects
+      </h1>
+      <p class="text-stone-600 leading-relaxed text-base">
+        Detailed breakdown of open-source systems engineering, GPU kernel optimizations, and embedded micro-inference implementations.
+      </p>
+    </header>
+
+    <!-- Detailed Projects -->
+    <section class="mt-12 space-y-12">
+      <!-- Project 1 -->
+      <article class="p-6 rounded-xl bg-white/70 border border-stone-200/90 shadow-xs space-y-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-200/70 pb-3">
+          <div>
+            <h2 class="text-xl font-bold font-serif text-stone-900">MatMultOnHopperChala</h2>
+            <span class="text-xs font-mono text-amber-800">High-Performance Hopper GEMM Optimization</span>
+          </div>
+          <a
+            href="https://github.com/chalarince-pixel/MatMultOnHopperChala"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-md bg-stone-900 text-stone-100 hover:bg-amber-900 transition"
+          >
+            <i data-lucide="github" class="w-3.5 h-3.5"></i> View Repository
+          </a>
+        </div>
+
+        <p class="text-sm text-stone-700 leading-relaxed">
+          A systematic benchmark and progressive implementation of General Matrix Multiply (GEMM) kernels targeting the NVIDIA H100 GPU (<code class="font-mono text-xs bg-stone-100 px-1 py-0.5 rounded border border-stone-200">sm_90</code>). Compares cuBLAS throughput against custom CUDA kernels designed to leverage new architectural primitives.
+        </p>
+
+        <div class="space-y-2 text-xs text-stone-700">
+          <div class="font-mono font-semibold text-stone-800 uppercase tracking-wider">Technical Architecture:</div>
+          <ul class="list-disc list-inside space-y-1 text-stone-600 pl-1">
+            <li><strong class="text-stone-800">WGMMA (MMA Async):</strong> Asynchronous Warpgroup Matrix Multiply and Accumulate operating directly from Shared Memory without register pressure.</li>
+            <li><strong class="text-stone-800">Tensor Memory Accelerator (TMA):</strong> 1D/2D asynchronous bulk memory transfers between global HBM3 and shared memory without warp stalls.</li>
+            <li><strong class="text-stone-800">Distributed Shared Memory (DSM):</strong> Inter-SM cooperative clustering allowing SMs within a cluster to access peer shared memory.</li>
+            <li><strong class="text-stone-800">cuBLAS Comparisons:</strong> Roofline and throughput analysis identifying bottle-neck transitions from memory-bound to compute-bound regimes.</li>
+          </ul>
+        </div>
+
+        <div class="flex flex-wrap gap-2 pt-2 border-t border-stone-100 font-mono text-xs text-stone-600">
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">CUDA 12</span>
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">sm_90</span>
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">Hopper H100</span>
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">WGMMA</span>
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">TMA Async</span>
+        </div>
+      </article>
+
+      <!-- Project 2 -->
+      <article class="p-6 rounded-xl bg-white/70 border border-stone-200/90 shadow-xs space-y-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-200/70 pb-3">
+          <div>
+            <h2 class="text-xl font-bold font-serif text-stone-900">McuDevAI</h2>
+            <span class="text-xs font-mono text-emerald-800 font-medium">Edge AI Sandbox for ESP32-S3 (~110 µs Inference)</span>
+          </div>
+          <a
+            href="https://github.com/chalarince-pixel/McuDevAI"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-md bg-stone-900 text-stone-100 hover:bg-amber-900 transition"
+          >
+            <i data-lucide="github" class="w-3.5 h-3.5"></i> View Repository
+          </a>
+        </div>
+
+        <p class="text-sm text-stone-700 leading-relaxed">
+          A complete, end-to-end TinyML deployment pipeline executing on bare-metal ESP32-S3 microcontrollers under FreeRTOS. Bridges neural network training in PyTorch through ONNX export, post-training INT8 quantization, and C-array serialization into Flash memory.
+        </p>
+
+        <div class="space-y-2 text-xs text-stone-700">
+          <div class="font-mono font-semibold text-stone-800 uppercase tracking-wider">Technical Architecture:</div>
+          <ul class="list-disc list-inside space-y-1 text-stone-600 pl-1">
+            <li><strong class="text-stone-800">Silicon-Level Acceleration:</strong> Binds TensorFlow Lite Micro to Espressif’s <code class="font-mono text-xs bg-stone-100 px-1 py-0.5 rounded">esp-nn</code> library, utilizing the ESP32-S3 128-bit vector coprocessor (PIE) for SIMD matrix math.</li>
+            <li><strong class="text-stone-800">INT8 Calibration:</strong> 4x memory footprint reduction and fast integer arithmetic through representative dataset quantization.</li>
+            <li><strong class="text-stone-800">Embedded Runtime:</strong> Lightweight 3 KB internal SRAM Tensor Arena with zero dynamic heap allocation during inference loops.</li>
+            <li><strong class="text-stone-800">Real-Time ASCII Plotter:</strong> Serial UART telemetry rendering prediction curves tracking mathematical ground truth in ~110 µs.</li>
+          </ul>
+        </div>
+
+        <div class="flex flex-wrap gap-2 pt-2 border-t border-stone-100 font-mono text-xs text-stone-600">
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">ESP-IDF</span>
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">FreeRTOS</span>
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">TFLite Micro</span>
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">esp-nn</span>
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">PyTorch</span>
+        </div>
+      </article>
+
+      <!-- Project 3 -->
+      <article class="p-6 rounded-xl bg-white/70 border border-stone-200/90 shadow-xs space-y-4">
+        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-stone-200/70 pb-3">
+          <div>
+            <h2 class="text-xl font-bold font-serif text-stone-900">NeuralRenderingMPSChala</h2>
+            <span class="text-xs font-mono text-amber-800">NeRF & Stochastic Geometry SDF on Apple Silicon</span>
+          </div>
+          <a
+            href="https://github.com/chalarince-pixel/NeuralRenderingMPSChala"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex items-center gap-1.5 text-xs font-mono px-3 py-1.5 rounded-md bg-stone-900 text-stone-100 hover:bg-amber-900 transition"
+          >
+            <i data-lucide="github" class="w-3.5 h-3.5"></i> View Repository
+          </a>
+        </div>
+
+        <p class="text-sm text-stone-700 leading-relaxed">
+          High-performance neural rendering and 3D surface reconstruction utilizing Apple Silicon Metal Performance Shaders (MPS). Implements neural implicit representations and fast geometry extraction algorithms.
+        </p>
+
+        <div class="space-y-2 text-xs text-stone-700">
+          <div class="font-mono font-semibold text-stone-800 uppercase tracking-wider">Technical Architecture:</div>
+          <ul class="list-disc list-inside space-y-1 text-stone-600 pl-1">
+            <li><strong class="text-stone-800">Sub-Second Geometry Extraction:</strong> 1-second cross-platform 3D triangular mesh extraction from continuous Signed Distance Fields.</li>
+            <li><strong class="text-stone-800">Multi-View Human Head Reconstruction:</strong> Trained on the 38-camera dome Meta Multiface dataset to produce photorealistic geometry.</li>
+            <li><strong class="text-stone-800">From-Scratch LoRA Adaptation:</strong> Low-Rank Adaptation applied directly into implicit rendering pipelines for parameter-efficient tuning.</li>
+            <li><strong class="text-stone-800">MPS Acceleration:</strong> Custom shader graph execution optimized for unified memory unified GPU cores.</li>
+          </ul>
+        </div>
+
+        <div class="flex flex-wrap gap-2 pt-2 border-t border-stone-100 font-mono text-xs text-stone-600">
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">PyTorch</span>
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">Apple Silicon MPS</span>
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">NeRF</span>
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">SDF</span>
+          <span class="bg-stone-100 px-2 py-0.5 rounded border border-stone-200">3D Computer Vision</span>
+        </div>
+      </article>
+    </section>
+
+    <!-- Footer -->
+    <footer class="mt-16 pt-6 border-t border-stone-200 flex flex-col sm:flex-row justify-between items-center text-xs text-stone-500 font-mono gap-2">
+      <div>© 2026 Chala Rince. All rights reserved.</div>
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="hover:text-amber-800 transition">Home</a>
+        <span>•</span>
+        <a href="https://github.com/chalarince-pixel/chalarince-pixel.github.io" class="hover:text-amber-800 transition">Source Code</a>
+      </div>
+    </footer>
+
+    <script>
+      lucide.createIcons();
+    </script>
+  </body>
+</html>
